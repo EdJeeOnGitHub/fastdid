@@ -19,7 +19,8 @@ estimate_did <- function(dt_did, covnames, control_type,
   # ipw --------
 
   if(ipw){
-    if(is.null(cache_ps_fit)|is.null(cache_hess)){ #if no cache, calcuate ipw
+    # if(is.null(cache_ps_fit)|is.null(cache_hess)){ #if no cache, calcuate ipw
+    if (TRUE) {
 
       #estimate the logit
       prop_score_est <- suppressWarnings(parglm.fit(covvars, dt_did[, D],
