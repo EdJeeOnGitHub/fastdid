@@ -46,8 +46,10 @@ estimate_gtatt <- function(outcomes_list, outcomevar, covariates, control_type, 
  
         #estimate did
         if(!allow_unbalance_panel){
+          print(paste0("gt_name: ", gt_name))
           result <- estimate_did(cohort_did, colnames(covariates), control_type, last_coef, cache_ps_fit_list[[gt_name]], cache_hess_list[[gt_name]])
         } else {
+          print(paste0("gt_name: ", gt_name))
           result <- estimate_did_rc(cohort_did, colnames(covariates), control_type, last_coef, cache_ps_fit_list[[gt_name]], cache_hess_list[[gt_name]])
         }
        

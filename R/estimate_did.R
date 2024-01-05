@@ -148,8 +148,7 @@ estimate_did <- function(dt_did, covnames, control_type,
   inf_func <- rep(0, oldn) #the default needs to be 0 for the matrix multiplication
   inf_func_no_na <- inf_func_no_na * oldn / n #adjust the value such that mean over the whole id size give the right result
   inf_func[data_pos] <- inf_func_no_na
-
-  
+  print(paste0("prop score:", prop_score_fit))
   return(list(att = att, inf_func = inf_func, logit_coef = logit_coef, #for next gt
               cache_ps_fit = prop_score_fit, cache_hess = hess)) #for next outcome
 }
