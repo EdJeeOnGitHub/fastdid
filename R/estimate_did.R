@@ -34,6 +34,7 @@ estimate_did <- function(dt_did, covnames, control_type,
       logit_coef <-  prop_score_est$coefficients
       logit_coef[is.na(logit_coef)|abs(logit_coef) > 1e10] <- 0 #put extreme value and na to 0
       prop_score_fit <- fitted(prop_score_est)
+      print(paste0("prop score:", prop_score_fit))
       if(max(prop_score_fit) >= 1){warning(paste0("support overlap condition violated for some group_time"))}
       prop_score_fit <- pmin(1-1e-16, prop_score_fit) #for the ipw
 
@@ -148,7 +149,6 @@ estimate_did <- function(dt_did, covnames, control_type,
   inf_func <- rep(0, oldn) #the default needs to be 0 for the matrix multiplication
   inf_func_no_na <- inf_func_no_na * oldn / n #adjust the value such that mean over the whole id size give the right result
   inf_func[data_pos] <- inf_func_no_na
-  print(paste0("prop score:", prop_score_fit))
   return(list(att = att, inf_func = inf_func, logit_coef = logit_coef, #for next gt
               cache_ps_fit = prop_score_fit, cache_hess = hess)) #for next outcome
 }
